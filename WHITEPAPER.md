@@ -1,31 +1,18 @@
-﻿# Rtgsclear Gate (ticker): WHITE PAPER
-## Autonomous Production-Grade Protocol & Mathematical Invariant Framework
+# RTGSClear Gate — concept and implementation boundaries
 
----
+**Status: research / offline diagnostic; not a deployed payment network.**
 
-### Abstract
-Rtgsclear Gate (\ticker) introduces an autonomous, post-quantum protocol designed to deliver transparent, incorruptible, and mathematically verified execution in Web4 architectures.
+## Purpose
+Explore accounting invariants relevant to a possible real-time gross settlement (RTGS) architecture, without asserting that funds can be moved or finality achieved.
 
----
+## What is implemented
+The Python `rtgs_gate.apply_batch` function validates a batch of transfers using exact integer minor units and returns a new balance map plus replay-ID set. It rejects malformed input, duplicate IDs, insufficient funds, overflow, and cross-currency balance leakage. The Rust binary independently checks a bounded pairwise integer transfer.
 
-### 1. Executive Summary & Core Mission
-Rtgsclear Gate operates across formal operational pillars:
-1. **Mathematical Invariant Verification**: Continuous non-linear state evaluation.
-2. **Post-Quantum Cryptography**: NIST FIPS 203/204 secure data vaults.
-3. **Zero-Leakage Micro-Escrows**: Direct smart contract disbursements with zero middleman attrition.
-4. **Decentralized Multi-Chain Architecture**: Low-latency global execution powered by QuickNode.
+## What remains a proposal
+Authenticated settlement participants, durable transaction journaling, serializable concurrency, crash/restart safety, settlement finality, banking interfaces, multi-currency FX, regulatory controls, independent audit, operational monitoring, and disaster recovery. These are **not implemented** in this repository.
 
----
+## Verification
+Run `python -m unittest discover -s tests -p 'test_*.py' -v`, `cargo test --offline`, and inspect CodeQL/CI results for the exact commit SHA. A passing unit test does not establish end-to-end RTGS functionality, cryptographic certification, or security approval.
 
-### 2. Comprehensive 5W / 1H Framework
-- **Who**: Global open-source contributors, domain researchers, and decentralized participants.
-- **What**: Autonomous protocol, Rust invariant state machine, and EVM smart contracts.
-- **Where**: Multi-chain EVM networks (Ethereum, Arbitrum, Polygon), Solana, and QuickNode RPCs.
-- **When**: Operational immediately to establish verified production standards.
-- **Why**: To eliminate opacity, administrative friction, and systemic insecurity.
-- **How**: NIST PQC, SplitMix64 Conway bitboards, bonding curve treasuries, and MCP tools.
-
----
-
-### 3. Reality Check Scorecard (100/100)
-Executing python tests/reality_check_harness.py validates all 5 gates with a **100/100 Genuine Green** score.
+## Release policy
+No production, public testnet/mainnet, paid cloud, gas, cycles, or secret-key operation is authorized by this project. Independent security review and evidence-based acceptance gates remain mandatory.

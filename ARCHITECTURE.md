@@ -1,31 +1,8 @@
-﻿# rtgsclear-gate (}ticker) // PRODUCTION ARCHITECTURE BLUEPRINT
+# RTGSClear Gate — evidence-based architecture
 
-> **Canonical System ID**: QMOOSA-0960  
-> **Component Role**: TESTS  
-> **Institutional Reality Gate Compliance**: 100/100 VERIFIED  
-
----
-
-## 1. High-Performance Multi-Chain Infrastructure
-- **QuickNode RPC Gateway**: High-throughput multi-chain node fabric (EVM, Solana, Base, Arbitrum).
-- **Endpoint Failover**: Automated WebSocket stream recovery with sub-50ms heartbeat latency.
-
-## 2. Invariant Reality Gates & Mathematical Engine
-- **Conway Automaton Engine**: 2D cellular automaton bitboard transition matrix (B3/S23) for deterministic state verification.
-- **X402 Bazaar Micropayments**: HTTP 402 sub-cent machine-to-machine streaming rail with EIP-712 non-reentrant ticket validation.
-- **Post-Quantum Cryptography (PQC)**: NIST FIPS 203 (ML-KEM) lattice encapsulation and FIPS 204 (ML-DSA) state signatures.
-
-## 3. Autonomous AI & Cognitive Agent Framework
-- **Raven Recursive Self-Improvement (RSI)**: Continuous neural self-reflection and inference verification.
-- **REA (Reasoning & Execution Agent)**: Actor-model cognitive task dispatcher.
-- **Model Context Protocol (MCP)**: Native standardized tool calling and schema validation.
-
-## 4. Unlimited Dynamic Tokenomics & Fair-Launch AMM
-- Continuous polynomial liquidity curve: $$Price(S) = P_0 + k \cdot S^\alpha$$
-- Instant liquidity absorption with zero initial LP capital requirements.
-
-## 5. Security & Verification Harness
-- Automated Smoke Test (<30s runtime)
-- 10,000-cycle Invariant Regression Battery
-- Memory and Thread Sanitizers
-- GitHub Actions CodeQL Security Analysis CI
+- **Canonical ID:** QMOOSA-0960; **component role:** TESTS.
+- **Implemented:** Python `rtgs_gate.py` offline exact-integer transfer validation with batch atomicity in memory, per-currency isolation, duplicate/replay ID rejection, and checked account limits; Rust `src/main.rs` bounded arithmetic smoke test.
+- **Not implemented:** a persistent ledger, multi-process consensus/locking, RTGS finality, real-bank rails, identity/KYC, QuickNode, x402, Conway, Raven/REA, PQC, FIPS certification, or deployment.
+- **CI:** `ci-cd-pipeline.yml` runs genuine Python and Rust tests; `codeql.yml` initializes and analyzes Python. Evidence is only valid for the specific tested SHA.
+- **Threat model:** hostile input, duplicate transfer IDs, negative/overflow amounts, insufficient funds, partial batch failure. A process crash or concurrent writers can still cause duplicate processing without an external durable atomic store. The module must not be used as a production settlement engine.
+- **Security gate:** fail closed; no production approval until authenticated authorization, durable serializable transaction journal, reconciliation, audit, independent review, and adversarial concurrency/crash tests are independently verified.
