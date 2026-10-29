@@ -1,31 +1,25 @@
-﻿# Rtgsclear Gate (ticker)
-> Autonomous Production-Grade Protocol
+# RTGSClear Gate — offline accounting invariants
 
-[![CI/CD Pipeline](https://github.com/elon00/rtgsclear-gate/actions/workflows/ci-cd-pipeline.yml/badge.svg)](https://github.com/elon00/rtgsclear-gate/actions)
-[![Score](https://img.shields.io/badge/Reality%20Gates-100%2F100%20GENUINE%20GREEN-2ea44f?style=flat-square)](#reality-check-verification)
-[![NIST PQC](https://img.shields.io/badge/Security-NIST%20FIPS%20203%20%26%20204-blue?style=flat-square)](#security)
-[![Verified](https://img.shields.io/badge/Status-100%25%20Verified-gold?style=flat-square)](#pillars)
+This repository currently provides a **bounded, offline diagnostic** for integer-denominated account transfers. It does **not** implement an RTGS payment network, real settlement, durable replay journal, distributed concurrency control, identity/authentication, cryptographic key management, QuickNode RPC, x402, or a FIPS-validated module.
 
----
+## Run without network access
 
-## About Rtgsclear Gate
-**Rtgsclear Gate (\ticker)** is an autonomous, decentralized, post-quantum intelligence protocol engineered for production-grade operational efficiency and cryptographic trust.
-
----
-
-## Running the Protocol Locally
-
-### 1. Execute Reality Check Harness (Python)
-``bash
+```bash
+python -m unittest discover -s tests -p 'test_*.py' -v
 python tests/reality_check_harness.py
-``
+cargo fmt --all -- --check
+cargo test --offline
+cargo run --offline
+```
 
-### 2. Run the High-Performance Rust State Engine
-``bash
-cargo run
-``
+`rtgs_gate.apply_batch` returns new account balances and replay IDs only after validating an entire batch. The caller is responsible for **atomic, durable persistence** of both values, concurrency control, legal settlement finality, and all operational controls. No such caller is included here. The Rust binary is an independent integer-arithmetic smoke test, not an RTGS engine.
 
----
+## Acceptance status
 
-## Reality Check Verification
-Rtgsclear Gate enforces strict pre-deployment verification: all invariants, cryptographic proofs, and micro-escrow contracts must achieve a **100/100 Genuine Green** rating before mainnet settlement.
+- Python regression tests and Rust unit tests: run in CI; check the specific commit's GitHub Actions results.
+- CodeQL: runs separately; a passing workflow is **not** a security audit.
+- Security approval: **NOT GRANTED**.
+- Deployment readiness: **NOT GRANTED**.
+- Production certification/FIPS validation: **NONE**.
+
+This branch replaces previously fabricated `100/100` and FIPS/RPC status messages with verifiable, narrowly scoped checks. See `SECURITY.md` for the project security policy; no claim in legacy architecture documents is evidence of implementation.
