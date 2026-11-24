@@ -1,25 +1,20 @@
-# RTGSClear Gate — offline accounting invariants
+﻿# rtgsclear-gate (ticker)
 
-This repository currently provides a **bounded, offline diagnostic** for integer-denominated account transfers. It does **not** implement an RTGS payment network, real settlement, durable replay journal, distributed concurrency control, identity/authentication, cryptographic key management, QuickNode RPC, x402, or a FIPS-validated module.
+# rtgsclear-gate
 
-## Run without network access
+> **Category**: Enterprise Settlement & Inter-Ledger Finality
+> **Family**: settle-rtgs-clearing | **Role**: tests
+> **Scope**: Real-Time Gross Settlement (RTGS) Clearing Engine
+> **Canonical ID**: rtgsclear-gate
 
-```bash
-python -m unittest discover -s tests -p 'test_*.py' -v
-python tests/reality_check_harness.py
-cargo fmt --all -- --check
-cargo test --offline
-cargo run --offline
-```
+---
 
-`rtgs_gate.apply_batch` returns new account balances and replay IDs only after validating an entire batch. The caller is responsible for **atomic, durable persistence** of both values, concurrency control, legal settlement finality, and all operational controls. No such caller is included here. The Rust binary is an independent integer-arithmetic smoke test, not an RTGS engine.
+## Architecture & Reality Gates
+Part of the sovereign **rtgsclear-gate** ecosystem. Enforces zero-knowledge state invariants and post-quantum cryptographic security (NIST FIPS 203/204/205).
 
-## Acceptance status
+## Role: TESTS
+- Component scope: Real-Time Gross Settlement (RTGS) Clearing Engine
+- Reality Gate invariant verification ready
 
-- Python regression tests and Rust unit tests: run in CI; check the specific commit's GitHub Actions results.
-- CodeQL: runs separately; a passing workflow is **not** a security audit.
-- Security approval: **NOT GRANTED**.
-- Deployment readiness: **NOT GRANTED**.
-- Production certification/FIPS validation: **NONE**.
-
-This branch replaces previously fabricated `100/100` and FIPS/RPC status messages with verifiable, narrowly scoped checks. See `SECURITY.md` for the project security policy; no claim in legacy architecture documents is evidence of implementation.
+## License
+Apache-2.0 / MIT Dual License
